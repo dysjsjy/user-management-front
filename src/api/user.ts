@@ -10,7 +10,7 @@ export const userRecommend = async () => {
             pageNum: 1
         },
     }).then(res => {
-        return res?.data;
+        return res?.data?.data?.records;
     })
 }
 
@@ -22,7 +22,22 @@ export const userMatch = async () => {
             num: 4
         },
     }).then(res => {
-        return res?.data;
+        return res?.data?.data?.records;
     })
 }
 
+export const userLogin = async (params: any) => {
+    return myAxios.request({
+        url: "/user/login",
+        method: "POST",
+        data: params,
+    })
+}
+
+export const userRegister = async (params: any) => {
+    return myAxios.request({
+        url: "/user/register",
+        method: "POST",
+        data: params,
+    })
+}

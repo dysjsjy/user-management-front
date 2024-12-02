@@ -61,6 +61,12 @@ const items = ref<MenuProps['items']>([
     key: '/user/login',
   },
   {
+    title: 'UserRegisterPage',
+    icon: () => h(GlobalOutlined),
+    label: 'UserRegisterPage',
+    key: '/user/register',
+  },
+  {
     title: 'UserPage',
     icon: () => h(GlobalOutlined),
     label: 'UserPage',

@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <div>userinfopage</div>
+  <div>
+
+  </div>
 </template>
 
 <style scoped>
