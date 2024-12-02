@@ -41,3 +41,11 @@ export const userRegister = async (params: any) => {
         data: params,
     })
 }
+
+export const userSearchTag = async (params: any) => {
+    return myAxios.request({
+        url: "/user/search/tags",
+        method: "GET",
+        data: params,
+    })
+}
