@@ -30,9 +30,9 @@ const contactUser = (user: UserType) => {
   })
 }
 
-const propsClick = (props: any) => {
-  console.log("显示props：", props);
-}
+// const propsClick = (props: any) => {
+//   console.log("显示props：", props);
+// }
 </script>
 
 <template>
@@ -77,9 +77,9 @@ const propsClick = (props: any) => {
         </template>
       </a-card>
     </a-skeleton>
-    <a-button type="primary" size="small" @click="propsClick(props)">
-      显示props
-    </a-button>
+<!--    <a-button type="primary" size="small" @click="propsClick(props)">-->
+<!--      显示props-->
+<!--    </a-button>-->
   </div>
 </template>
 

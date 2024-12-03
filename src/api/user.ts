@@ -1,5 +1,5 @@
 import myAxios from "../request.ts";
-
+import qs from "qs";
 
 export const userRecommend = async () => {
     return myAxios.request({
@@ -46,6 +46,16 @@ export const userSearchTag = async (params: any) => {
     return myAxios.request({
         url: "/user/search/tags",
         method: "GET",
-        data: params,
-    })
-}
+        params: params,
+        paramsSerializer: params => {
+            return qs.stringify(params, {indices: false});
+        },
+    }).then(function (response) {
+        // 处理成功情况
+        console.log('/user/search/tags success', response);
+        return response?.data;
+    }).catch(function (error) {
+        // 处理错误情况
+        console.log('/user/search/tags error', error);
+    });
+};
