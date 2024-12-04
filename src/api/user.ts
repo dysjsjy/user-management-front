@@ -64,7 +64,7 @@ export const getCurrentUser = async () => {
     return myAxios.request({
         url: "/user/current",
         method: "GET",
-    }).then(res => res?.data).catch(function (error) {
+    }).then(res => res?.data?.data).catch(function (error) {
         console.log(error);
         return null;
     });
