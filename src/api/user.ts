@@ -59,3 +59,42 @@ export const userSearchTag = async (params: any) => {
         console.log('/user/search/tags error', error);
     });
 };
+
+export const getCurrentUser = async () => {
+    return myAxios.request({
+        url: "/user/current",
+        method: "GET",
+    }).then(res => res?.data).catch(function (error) {
+        console.log(error);
+        return null;
+    });
+}
+
+
+interface UpdateUserParams {
+    id: number;
+    editKey: string;
+    currentValue: any;
+    headers?: Record<string, string>;  // 可选的请求头
+}
+
+export const updateUser = async (
+    {
+        id,
+        editKey,
+        currentValue,
+        headers = {},
+    }: UpdateUserParams) => {
+    try {
+        const res = await myAxios.post('/user/update', {
+            id,
+            [editKey]: currentValue,
+        }, {
+            headers,  // 将请求头传递给 Axios
+        });
+        return res.data;
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
+    }
+}

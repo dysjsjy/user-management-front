@@ -18,6 +18,7 @@ const lookTags = (tags: any) => {
   console.log("tags:", tags)
 }
 
+//这里的tags时json数据类型
 
 onMounted(async () => {
   message.loading({
