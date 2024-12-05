@@ -58,26 +58,29 @@ watchEffect(() => {
 
 <template>
   <div id="TeamPage">
-    <a-input-search
-        v-model:value="searchText"
-        placeholder="搜索队伍"
-        enter-button
-        @search="onSearch"
-    />
-    <div>
-      查询状态
-      <a-switch v-model:checked="checked" @change="onTabChange" checked-children="公开" un-checked-children="私密" />
-    </div>
-    <a-button type="primary" @click="toAddTeam">添加队伍</a-button>
-    <team-card-list/>
-    <a-alert v-if="!teamList || teamList.length < 1" message="没有数据" type="warning" />
+    <a-flex vertical="true" gap="small">
+      <a-input-search
+          v-model:value="searchText"
+          placeholder="搜索队伍"
+          enter-button
+          @search="onSearch"
+      />
+      <div>
+        查询状态
+        <a-switch v-model:checked="checked" @change="onTabChange" checked-children="公开" un-checked-children="私密"/>
+      </div>
+      <a-button type="primary" @click="toAddTeam">添加队伍</a-button>
+      <team-card-list/>
+      <a-alert v-if="!teamList || teamList.length < 1" message="没有数据" type="warning"/>
+    </a-flex>
+
   </div>
 </template>
 
 <style scoped>
-  #TeamPage {
-    width: 640px;
-    height: 640px;
-    margin: 20px auto;
-  }
+#TeamPage {
+  width: 640px;
+  height: 640px;
+  margin: 20px auto;
+}
 </style>
