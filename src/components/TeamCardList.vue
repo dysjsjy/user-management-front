@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>team</div>
+  <div>TeamCardList</div>
 </template>
 
 <style scoped>
