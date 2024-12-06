@@ -35,3 +35,21 @@ export const listTeam = async (params: ListTeamParams = {}) => {
         },
     });
 };
+
+
+export interface TeamAddInfo {
+    name: string,
+    description: string,
+    expireTime: Date | null,
+    maxNum: number,
+    status: number,
+    password?: string,
+}
+
+export const teamAdd = async (data: TeamAddInfo) => {
+    return myAxios.request({
+        url: "/team/add",
+        method: "POST",
+        data: data,
+    })
+}
