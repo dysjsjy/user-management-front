@@ -48,12 +48,12 @@ const toAddTeam = () => {
 }
 
 onMounted(() => {
-  listTeam();
+  saveListTeam();
 })
 
 watchEffect(() => {
   console.log("teamList:", teamList);
-})
+});
 </script>
 
 <template>
@@ -70,7 +70,7 @@ watchEffect(() => {
         <a-switch v-model:checked="checked" @change="onTabChange" checked-children="公开" un-checked-children="私密"/>
       </div>
       <a-button type="primary" @click="toAddTeam">添加队伍</a-button>
-      <team-card-list/>
+      <team-card-list :teamList="teamList" />
       <a-alert v-if="!teamList || teamList.length < 1" message="没有数据" type="warning"/>
     </a-flex>
 

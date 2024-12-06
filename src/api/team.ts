@@ -15,6 +15,7 @@ export interface ListTeamParams {
 // 使用枚举定义状态，替代魔法数字
 export enum TeamStatus {
     Public = 0,
+    Private = 1,
     Encrypt = 2,
 }
 
@@ -49,6 +50,19 @@ export interface TeamAddInfo {
 export const teamAdd = async (data: TeamAddInfo) => {
     return myAxios.request({
         url: "/team/add",
+        method: "POST",
+        data: data,
+    })
+}
+
+export interface joinTeamInfo {
+    teamId: number;
+    password?: string;
+}
+
+export const joinTeam = async (data: joinTeamInfo) => {
+    return myAxios.request({
+        url: "/team/join",
         method: "POST",
         data: data,
     })
