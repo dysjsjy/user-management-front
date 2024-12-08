@@ -8,6 +8,7 @@ export type TeamType = {
     name: string;
     description: string;
     expireTime?: Date;
+    hasJoin?: boolean;
     maxNum: number;
     password?: string,
     status: number;

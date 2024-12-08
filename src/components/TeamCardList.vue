@@ -3,7 +3,7 @@ import {TeamType} from "../models/team";
 import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 import {getCurrentUser} from "../api/user.ts";
-import {joinTeam, TeamStatus} from "../api/team.ts";
+import {deleteTeam, joinTeam, quitTeam, TeamStatus} from "../api/team.ts";
 import {message} from "ant-design-vue";
 
 interface TeamCardListProps {
@@ -62,13 +62,27 @@ const doUpdateTeam = (id: number) => {
   });
 }
 
-const doQuitTeam = async (id: number) => {
+const doQuiteTeam = async (id: number) => {
   console.log("执行退出队伍");
+  const res = await quitTeam({
+    teamId: id,
+  });
+  if (res.data.code === 0) {
+    message.success("推出队伍成功");
+  } else {
+    message.error("推出队伍失败");
+  }
 }
 
 
 const doDeleteTeam = async (id: number) => {
   console.log("执行解散队伍");
+  const res = await deleteTeam(id);
+  if (res.data.code === 0) {
+    message.success("解散队伍成功");
+  } else {
+    message.error("解散队伍失败");
+  }
 }
 
 const curUserAndTeamList = () => {
@@ -82,7 +96,8 @@ const curUserAndTeamList = () => {
   <div id="TeamCardList">
     <a-button
         @click="curUserAndTeamList"
-    >看看当前用户和队伍列表</a-button>
+    >看看当前用户和队伍列表
+    </a-button>
     <a-card
         v-for="team in props.teamList"
         :title="team.name"
@@ -104,10 +119,28 @@ const curUserAndTeamList = () => {
         </template>
       </a-card-meta>
       <template #actions>
-        <a-button type="primary" v-if="team.createUser?.id != currentUser.id" @click="preJoinTeam(team)">加入队伍</a-button>
-        <a-button v-if="team.createUser?.id == currentUser.id" @click="doUpdateTeam(team.id)">编辑队伍</a-button>
-        <a-button>退出队伍</a-button>
-        <a-button>解散队伍</a-button>
+        <a-button
+            type="primary"
+            v-if="team.createUser?.id != currentUser.id"
+            @click="preJoinTeam(team)"
+        >加入队伍
+        </a-button>
+        <a-button
+            v-if="team.createUser?.id == currentUser.id"
+            @click="doUpdateTeam(team.id)"
+        >编辑队伍
+        </a-button>
+        <a-button
+            v-if="team.createUser?.id != currentUser.id
+            && team.hasJoin"
+            @click="doQuiteTeam(team.id)"
+        >退出队伍
+        </a-button>
+        <a-button
+            v-if="team.createUser?.id == currentUser.id"
+            @click="doDeleteTeam(team.id)"
+        >解散队伍
+        </a-button>
       </template>
     </a-card>
   </div>

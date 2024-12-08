@@ -19,7 +19,7 @@ export enum TeamStatus {
     Encrypt = 2,
 }
 
-export const listTeam = async (params: ListTeamParams = {}) => {
+export const listTeam = async (params: ListTeamParams) => {
     const {
         searchText = "",
         pageNum = 1,
@@ -65,5 +65,27 @@ export const joinTeam = async (data: joinTeamInfo) => {
         url: "/team/join",
         method: "POST",
         data: data,
+    })
+}
+
+export const quitTeam = async (data: {
+    teamId: number;
+}) => {
+    return myAxios.request({
+        url: "/team/quit",
+        method: "POST",
+        data: {
+            teamId: data.teamId,
+        }
+    });
+}
+
+export const deleteTeam = async (id: number) => {
+    return myAxios.request({
+        url: "/team/delete",
+        method: "POST",
+        data: {
+            id: id,
+        },
     })
 }
