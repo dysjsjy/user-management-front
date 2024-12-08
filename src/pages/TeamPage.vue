@@ -45,7 +45,7 @@ const saveListTeam = async (params: ListTeamParams = {}) => {
 
 const toAddTeam = () => {
   router.push({
-    path: "/team/add"
+    path: "/team/add",
   })
 }
 

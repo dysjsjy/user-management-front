@@ -2,16 +2,15 @@
 import {useRouter} from "vue-router";
 import {reactive} from "vue";
 import dayjs, {Dayjs} from 'dayjs';
-import {teamAdd, TeamAddInfo} from "../api/team.ts";
+import {teamAdd, TeamInfo} from "../api/team.ts";
 import {message} from "ant-design-vue";
 
 const router = useRouter();
 
-const teamInfo = reactive<TeamAddInfo>({
+const teamInfo = reactive<TeamInfo>({
   name: '',
   description: '',
   expireTime: null,
-  maxNum: 3,
   status: 0,
   password: ''
 });

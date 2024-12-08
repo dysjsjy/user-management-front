@@ -1,6 +1,7 @@
 import myAxios from "../request.ts";
 
 export interface ListTeamParams {
+    userId?: number;
     searchText?: string;
     pageNum?: number;
     statue?: number;
@@ -38,16 +39,16 @@ export const listTeam = async (params: ListTeamParams) => {
 };
 
 
-export interface TeamAddInfo {
+export interface TeamInfo {
     name: string,
     description: string,
     expireTime: Date | null,
-    maxNum: number,
+    maxNum?: number,
     status: number,
     password?: string,
 }
 
-export const teamAdd = async (data: TeamAddInfo) => {
+export const teamAdd = async (data: TeamInfo) => {
     return myAxios.request({
         url: "/team/add",
         method: "POST",
@@ -87,5 +88,23 @@ export const deleteTeam = async (id: number) => {
         data: {
             id: id,
         },
+    })
+}
+
+export const getTeam = async (id: number) => {
+    return myAxios.request({
+        url: "/team/get",
+        method: "GET",
+        params: {
+            id: id,
+        }
+    })
+}
+
+export const updateTeam = async (data: any) => {
+    return myAxios.request({
+        url: "/team/update",
+        method: "POST",
+        data: data,
     })
 }
