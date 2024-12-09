@@ -1,4 +1,5 @@
 import myAxios from "../request.ts";
+import {Ref, UnwrapRef} from "vue";
 
 export interface ListTeamParams {
     userId?: number;
@@ -107,4 +108,15 @@ export const updateTeam = async (data: any) => {
         method: "POST",
         data: data,
     })
+}
+
+export const getTeamMyJoin = async (params: {
+    searchText: Ref<UnwrapRef<string>, UnwrapRef<string> | string>;
+    pageNum: number
+}) => {
+    return myAxios.request({
+        url: "/list/my/join",
+        method: "GET",
+        params: params,
+    });
 }
