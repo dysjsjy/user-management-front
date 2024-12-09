@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import {useRoute} from "vue-router";
 import {onMounted, ref, watch} from "vue";
 import UserCardList from "../components/UserCardList.vue";
