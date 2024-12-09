@@ -14,8 +14,9 @@ const onSearch = () => {
 }
 
 const saveListTeam = async () => {
+  let rawDataSearchText = searchText.value == null ? '' : JSON.parse(JSON.stringify(searchText.value));
   const res = await getTeamMyJoin({
-    searchText: searchText,
+    searchText: rawDataSearchText,
     pageNum: 1,
   });
   if (res.data.code === 0) {
